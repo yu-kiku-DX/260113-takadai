@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>高台小学校 生成AI活用研修｜授業づくりで使ってみる</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      /* 色覚配慮の配色設計 - 統一デザインシステム */
+      --bg: #0a0e1a;
+      --bg-alt: #151b2e;
+      --card-bg: #1a2332;
+      
+      /* 高コントラストなアクセントカラー */
+      --accent-primary: #00d9ff;
+      --accent-secondary: #ff6b9d;
+      --accent-tertiary: #ffd93d;
+      
+      /* テキストカラー（高コントラスト） */
+      --text-main: #f8f9fa;
+      --text-secondary: #c5cdd9;
+      --text-muted: #8891a3;
+      
+      /* ボーダーカラー */
+      --border-subtle: #2a3548;
+      --border-emphasis: #3d4e6a;
+      
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --shadow-soft: 0 20px 50px rgba(0,0,0,0.6);
+      --shadow-emphasis: 0 8px 32px rgba(0,217,255,0.2);
+      --transition-fast: 200ms ease-out;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Noto Sans JP", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-main);
+      background: radial-gradient(ellipse at top, #1a2332 0%, #0f1520 40%, #0a0e1a 100%);
+      display: flex;
+      justify-content: center;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1120px;
+      padding: 32px 20px 40px;
+    }
+
+    /* ===== header ===== */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .title-block-small {
+      font-family: "Montserrat", system-ui, sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .page-title {
+      margin: 0;
+      font-family: "Montserrat", system-ui, sans-serif;
+      font-size: clamp(22px, 3vw, 30px);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #f8f9fa 0%, var(--accent-secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-subtitle {
+      margin: 6px 0 0;
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .back-link {
+      font-size: 12px;
+      color: var(--text-main);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1.5px solid var(--border-emphasis);
+      background: rgba(26,35,50,0.8);
+      white-space: nowrap;
+      transition: all var(--transition-fast);
+      font-weight: 500;
+    }
+    .back-link:hover {
+      border-color: var(--accent-secondary);
+      color: var(--accent-secondary);
+      background: rgba(26,35,50,0.95);
+      transform: translateX(-2px);
+    }
+
+    h2 {
+      font-size: 18px;
+      margin: 0 0 8px;
+      color: var(--text-main);
+    }
+
+    .lead {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+      line-height: 1.7;
+    }
+
+    /* ===== step title ===== */
+    .step-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 24px 0 8px;
+      padding-left: 12px;
+      border-left: 3px solid var(--accent-secondary);
+      letter-spacing: 0.04em;
+      color: var(--text-main);
+    }
+
+    /* ===== card ===== */
+    .card {
+      background: linear-gradient(145deg, rgba(26,35,50,0.85), rgba(42,53,72,0.7));
+      border-radius: var(--radius-md);
+      padding: 18px 16px 16px;
+      border: 1.5px solid var(--border-emphasis);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,107,157,0.08);
+      font-size: 13px;
+      margin-bottom: 16px;
+      transition: all var(--transition-fast);
+    }
+
+    .card:hover {
+      border-color: var(--accent-secondary);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.6), 0 8px 32px rgba(255,107,157,0.2);
+      transform: translateY(-2px);
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 15px;
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .card h4 {
+      margin: 10px 0 4px;
+      font-size: 13px;
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .card p {
+      margin: 4px 0;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .card ul, .card ol {
+      margin: 6px 0 4px 18px;
+      padding: 0;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      font-size: 13px;
+    }
+
+    .card strong {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    /* ===== tag ===== */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 10px;
+      background: rgba(26,35,50,0.8);
+      border: 1.5px solid var(--accent-secondary);
+      color: var(--accent-secondary);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 8px;
+      width: fit-content;
+    }
+
+    /* タグのバリエーション */
+    .grid-menu .card:nth-child(1) .tag {
+      border-color: var(--accent-primary);
+      color: var(--accent-primary);
+    }
+
+    .grid-menu .card:nth-child(2) .tag {
+      border-color: var(--accent-secondary);
+      color: var(--accent-secondary);
+    }
+
+    .grid-menu .card:nth-child(3) .tag {
+      border-color: var(--accent-tertiary);
+      color: var(--accent-tertiary);
+    }
+
+    .grid-menu .card:nth-child(4) .tag {
+      border-color: var(--accent-primary);
+      color: var(--accent-primary);
+    }
+
+    .grid-menu .card:nth-child(5) .tag {
+      border-color: var(--accent-secondary);
+      color: var(--accent-secondary);
+    }
+
+    /* ===== pre ===== */
+    pre {
+      white-space: pre-wrap;
+      font-size: 12px;
+      font-family: "SF Mono","Consolas","Menlo",monospace;
+      color: var(--text-main);
+      background: rgba(10,14,26,0.95);
+      padding: 12px;
+      border-radius: 8px;
+      border: 1.5px solid var(--border-emphasis);
+      margin-top: 8px;
+      line-height: 1.5;
+      box-shadow: inset 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    /* ===== grid menu ===== */
+    .grid-menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    /* ===== inline link ===== */
+    a.inline-link {
+      color: var(--accent-primary);
+      text-decoration: none;
+      border-bottom: 1.5px dashed rgba(0,217,255,0.5);
+      transition: all var(--transition-fast);
+    }
+    a.inline-link:hover {
+      border-bottom-style: solid;
+      border-bottom-color: var(--accent-primary);
+      color: #00e5ff;
+    }
+
+    /* ===== form section ===== */
+    .form-section {
+      margin-top: 32px;
+      padding: 24px 20px;
+      border-radius: 16px;
+      background: linear-gradient(145deg, rgba(26,35,50,0.85), rgba(21,27,46,0.95));
+      border: 2px solid var(--border-emphasis);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,107,157,0.1);
+      text-align: left;
+      transition: all var(--transition-fast);
+    }
+
+    .form-section:hover {
+      border-color: var(--accent-secondary);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 8px 32px rgba(255,107,157,0.2);
+    }
+
+    .section-title {
+      margin: 0 0 8px;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: var(--text-main);
+    }
+
+    .section-text {
+      margin: 0 0 16px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ===== button ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      border: 2px solid transparent;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-secondary), #d9548a);
+      color: #0a0e1a;
+      border-color: var(--accent-secondary);
+      box-shadow: 0 8px 24px rgba(255,107,157,0.35), inset 0 1px 0 rgba(255,255,255,0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(255,107,157,0.5), inset 0 1px 0 rgba(255,255,255,0.4);
+      background: linear-gradient(135deg, #ff80b3, var(--accent-secondary));
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-secondary {
+      background: rgba(26,35,50,0.8);
+      color: var(--text-main);
+      border-color: var(--border-emphasis);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent-secondary);
+      background: rgba(26,35,50,0.95);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(255,107,157,0.2);
+      color: var(--accent-secondary);
+    }
+
+    /* ===== footer ===== */
+    footer {
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1.5px solid var(--border-emphasis);
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* フォーカス表示の強化 */
+    .back-link:focus-visible,
+    .btn:focus-visible,
+    a.inline-link:focus-visible {
+      outline: 3px solid var(--accent-tertiary);
+      outline-offset: 2px;
+    }
+
+    /* レスポンシブ調整 */
+    @media (max-width: 640px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .back-link {
+        align-self: flex-start;
+      }
+
+      .grid-menu {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div>
+        <div class="title-block-small">高台小学校 生成AI活用研修</div>
+        <h1 class="page-title">Menu 03｜授業づくりで使ってみる</h1>
+        <p class="page-subtitle">
+          単元の骨格づくりから1時間の流れ、ふり返りまで。<br>
+          授業デザインを AI と一緒に考えてみる時間です。
+        </p>
+      </div>
+      <a class="back-link" href="index.html">← トップに戻る</a>
+    </header>
+
+    <main>
+      <!-- STEP A -->
+      <h2 class="step-title">STEP A｜全員でやってみる授業LX（4年国語「ごんぎつね」）</h2>
+      <p class="lead">
+        ここでは、4年国語「ごんぎつね」（全8時間）を例に、AI と一緒に単元の骨格をつくってみます。<br>
+        学習指導要領・指導と評価の一体化資料・教科書会社の指導計画例をまとめて材料にします。
+      </p>
+
+      <div class="card">
+        <div class="tag">Demo</div>
+        <h3>LX 演示｜4年国語「ごんぎつね」の単元骨格をAIでつくる</h3>
+        <p>
+          「読むのが苦手な子が多い」という前提を共有しながら、<br>
+          単元のねらい・全体の流れ・評価の観点のたたき台を AI に提案してもらいます。
+        </p>
+
+        <h4>① 資料をまとめて準備する</h4>
+        <ul>
+          <li>学習指導要領 国語（4年・物語文の該当箇所）</li>
+          <li>指導と評価の一体化資料（「ごんぎつね」または近い単元）</li>
+          <li>教科書会社の指導計画例（年間計画・単元計画）</li>
+        </ul>
+        <p><strong>参考リンク</strong></p>
+        <ul>
+          <li>
+            学習指導要領解説（国語）<br />
+            <a class="inline-link" href="https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2019/03/18/1387017_002.pdf" target="_blank" rel="noreferrer">
+              https://www.mext.go.jp/.../1387017_002.pdf
+            </a>
+          </li>
+          <li>
+            「指導と評価の一体化」のための学習評価に関する参考資料（国語）<br />
+            <a class="inline-link" href="https://www.nier.go.jp/kaihatsu/pdf/hyouka/r020326_pri_kokugo.pdf" target="_blank" rel="noreferrer">
+              https://www.nier.go.jp/kaihatsu/pdf/hyouka/r020326_pri_kokugo.pdf
+            </a>
+          </li>
+          <li>
+            教科書会社の指導計画案（教育出版 4年国語）<br />
+            <a class="inline-link" href="https://www.kyoiku-shuppan.co.jp/textbook/shou/kokugo/files/r6kokugo4_nenkeihyouka_2404.pdf" target="_blank" rel="noreferrer">
+              https://www.kyoiku-shuppan.co.jp/.../r6kokugo4_nenkeihyouka_2404.pdf
+            </a>
+          </li>
+        </ul>
+        <p>必要に応じて、これらのPDFから必要な部分をコピーし、まとめて AI に貼り付けてください。</p>
+
+        <h4>② 下のプロンプトをコピーまたは参考にして、AIを動かしてみる</h4>
+        <pre>
+役割：優秀な小学校教師
+材料：4年国語「ごんぎつね」／読むのが苦手な子が多い
+タスク：単元の「ねらい」「全体の流れ」「評価の観点」のたたき台をつくる
+条件：授業時数8時間で、読みが苦手な子も見通しを持って取り組める構成にする
+        </pre>
+
+        <h4>③ 出てきた案を「自校・自分仕様」に整える</h4>
+        <ul>
+          <li>自校の教育目標や研究の観点（例：対話・探究・情報活用など）に合わせて書き換える。</li>
+          <li>「これはないな」と感じる活動は、遠慮なく削る／入れ替える。</li>
+          <li>「この問い／この活動はそのまま使えそう」という部分に〇印を付けておく。</li>
+        </ul>
+      </div>
+
+      <!-- STEP B -->
+      <h2 class="step-title">STEP B｜自分の授業に合わせた個別メニュー</h2>
+      <p class="lead">
+        下の 5つの中から「今日これを試したい」というものを 1つ選び、同じように AI に相談してみてください。
+      </p>
+
+      <div class="grid-menu">
+        <!-- LX-個① -->
+        <div class="card">
+          <div class="tag">LX-個①</div>
+          <h3>単元や授業の骨格づくり</h3>
+          <p><strong>こんなときに</strong></p>
+          <ul>
+            <li>新しい単元や授業の構想をゼロから考えるのが重い。</li>
+            <li>ねらい・活動・評価のつながりを一度「見える化」して眺めたい。</li>
+          </ul>
+          <p><strong>AIに渡す材料の例</strong></p>
+          <ul>
+            <li>教科・学年・単元名、または授業のテーマ</li>
+            <li>学習指導要領や研究のキーワード（例：対話・探究・情報活用など）</li>
+            <li>子どもにどう変容してほしいかのゴールイメージ</li>
+          </ul>
+        </div>
+
+        <!-- LX-個② -->
+        <div class="card">
+          <div class="tag">LX-個②</div>
+          <h3>板書案やワークシートをつくる</h3>
+          <p><strong>こんなときに</strong></p>
+          <ul>
+            <li>単元や授業のねらいはあるが、板書やワークシートの形に落とし込むのが難しい。</li>
+            <li>評価の観点とリンクしたワークシートをつくりたい。</li>
+          </ul>
+          <p><strong>AIに渡す材料の例</strong></p>
+          <ul>
+            <li>単元や授業のねらい・評価の観点</li>
+            <li>授業内での活動の流れ（導入〜展開〜まとめ）</li>
+            <li>子どもに書かせたい／話させたいことのイメージ</li>
+          </ul>
+        </div>
+
+        <!-- LX-個③ -->
+        <div class="card">
+          <div class="tag">LX-個③</div>
+          <h3>評価のためのルーブリックを作成する</h3>
+          <p><strong>こんなときに</strong></p>
+          <ul>
+            <li>単元のねらいに沿った評価のものさし（ルーブリック）を作りたい。</li>
+            <li>子どもとも共有できる、シンプルで具体的な基準がほしい。</li>
+          </ul>
+          <p><strong>AIに渡す材料の例</strong></p>
+          <ul>
+            <li>評価したい観点（例：表現・思考・協働・主体性など）</li>
+            <li>その観点に関連する、子どもの具体的な行動例</li>
+            <li>段階（例：A/B/C、3段階など）の数とざっくりとした意味合い</li>
+          </ul>
+        </div>
+
+        <!-- LX-個④ -->
+        <div class="card">
+          <div class="tag">LX-個④</div>
+          <h3>子どもの振り返りへのフィードバックを考える</h3>
+          <p><strong>こんなときに</strong></p>
+          <ul>
+            <li>子どもの振り返りを読んでいるが、一人ひとりにコメントを書く時間がない。</li>
+            <li>「次の一歩」につながる短いフィードバックの言い方を増やしたい。</li>
+          </ul>
+          <p><strong>AIに渡す材料の例</strong></p>
+          <ul>
+            <li>子どもが実際に書いた振り返りの例（名前は必ず消して入れる）</li>
+            <li>その時間・単元で大事にしたい視点（例：理由を書く／友達の意見を受けとめる など）</li>
+            <li>先生として伝えたいメッセージの方向性</li>
+          </ul>
+        </div>
+
+        <!-- LX-個⑤ -->
+        <div class="card">
+          <div class="tag">LX-個⑤</div>
+          <h3>自分の授業の指導助言をもらう</h3>
+          <p><strong>こんなときに</strong></p>
+          <ul>
+            <li>授業後に記録はあるが、「次にどう改善するか」をまとめる時間がない。</li>
+            <li>別の視点から簡単な指導助言をもらってみたい。</li>
+          </ul>
+          <p><strong>AIに渡す材料の例</strong></p>
+          <ul>
+            <li>授業の概要（教科・学年・単元・この時間のねらい）</li>
+            <li>板書写真の文字起こしや、板書写真そのもの</li>
+            <li>授業記録や子どもの主な発言</li>
+            <li>子どものワークシートの記述例（複数枚あるとより良い）</li>
+            <li>自分で感じている課題や「うまくいかなかったな」と思うポイント</li>
+          </ul>
+          <p>
+            ※ 板書写真・ワークシート写真などの画像資料を一緒に入れることで、より具体的な助言が得られます。<br>
+            ※ 「良かった点」「改善点」「次時に試したい手立て」の3つでコメントしてもらうよう頼むと、<br>
+            事後記録や研究ノートに転記しやすくなります。
+          </p>
+        </div>
+      </div>
+
+      <!-- 共有フォーム -->
+      <section class="form-section">
+        <h2 class="section-title">授業づくりAIワークの共有フォーム</h2>
+        <p class="section-text">
+          単元づくり・板書案・ルーブリック・フィードバック案など、<br>
+          今日AIと一緒に作ってみた「授業づくり」の成果を共有するフォームです。
+        </p>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <a class="btn btn-primary"
+             href="https://docs.google.com/forms/d/e/1FAIpQLScgsm326JdmB0Z0k1l9mBRThQp1uRKJxUYgUn6oOtRvhvt3jA/viewform"
+             target="_blank" rel="noreferrer">
+            LX共有フォームを開く
+          </a>
+          <a class="btn btn-secondary"
+             href="https://docs.google.com/spreadsheets/d/1r92zyr2S_61YB1-bu-zsOOI-oCl33TEoW7HjDyfPrck/edit?usp=sharing"
+             target="_blank" rel="noreferrer">
+            みんなの回答
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      高台小学校 生成AI活用研修｜Menu 03 生成AIの授業づくり活用
+    </footer>
+  </div>
+</body>
+</html>
