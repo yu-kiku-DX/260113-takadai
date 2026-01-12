@@ -35,12 +35,13 @@
         /* Hero Section */
         .hero {
             position: relative;
-            min-height: 100vh;
+            min-height: auto;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
             background: var(--darker-bg);
+            padding: 3rem 0 4rem;
         }
 
         .grid-bg {
@@ -118,7 +119,7 @@
             letter-spacing: 3px;
             text-transform: uppercase;
             color: var(--neon-cyan);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             animation: glow 2s ease-in-out infinite;
         }
 
@@ -129,9 +130,9 @@
 
         .hero-title {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(3rem, 10vw, 8rem);
+            font-size: clamp(2.5rem, 8vw, 6rem);
             font-weight: 400;
-            line-height: 0.9;
+            line-height: 1;
             letter-spacing: 0.05em;
             margin-bottom: 1rem;
             background: linear-gradient(45deg, var(--neon-cyan), var(--neon-magenta), var(--lime));
@@ -149,10 +150,10 @@
 
         .hero-subtitle {
             font-family: 'Orbitron', sans-serif;
-            font-size: clamp(1rem, 3vw, 2rem);
+            font-size: clamp(0.9rem, 2.5vw, 1.5rem);
             font-weight: 700;
             color: var(--text-gray);
-            margin-bottom: 3rem;
+            margin-bottom: 1.5rem;
             letter-spacing: 0.2em;
         }
 
@@ -214,7 +215,7 @@
 
         /* Objectives Section */
         .objectives {
-            padding: 8rem 2rem;
+            padding: 3rem 2rem;
             background: var(--dark-bg);
             position: relative;
         }
@@ -226,7 +227,7 @@
 
         .section-header {
             text-align: center;
-            margin-bottom: 5rem;
+            margin-bottom: 3rem;
         }
 
         .section-label {
@@ -249,18 +250,23 @@
         }
 
         .objectives-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .objective-card {
             background: rgba(255, 255, 255, 0.02);
             border: 2px solid transparent;
-            padding: 3rem 2rem;
-            border-radius: 20px;
+            padding: 2rem;
+            border-radius: 16px;
             position: relative;
             transition: all 0.5s ease;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
         }
 
         .objective-card::before {
@@ -288,13 +294,13 @@
 
         .objective-number {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 5rem;
+            font-size: 4rem;
             line-height: 1;
             background: linear-gradient(135deg, var(--neon-cyan), var(--electric-blue));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 1rem;
+            flex-shrink: 0;
         }
 
         .objective-text {
@@ -310,28 +316,26 @@
 
         /* Navigation Section */
         .navigation {
-            padding: 8rem 2rem;
+            padding: 3rem 2rem;
             background: var(--darker-bg);
             position: relative;
         }
 
         .nav-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 4rem;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
         }
 
         .nav-card {
             position: relative;
-            aspect-ratio: 1;
             background: rgba(255, 255, 255, 0.02);
-            border-radius: 16px;
-            padding: 2rem;
+            border-radius: 12px;
+            padding: 1.25rem;
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: space-between;
+            align-items: center;
+            gap: 1.25rem;
             text-decoration: none;
             color: var(--text-light);
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -360,20 +364,24 @@
 
         .nav-number {
             font-family: 'Orbitron', sans-serif;
-            font-size: 3rem;
+            font-size: 2rem;
             font-weight: 900;
             color: var(--neon-cyan);
             position: relative;
             z-index: 2;
+            flex-shrink: 0;
+            width: 60px;
+            text-align: center;
         }
 
         .nav-title {
             font-family: 'Noto Sans JP', sans-serif;
             font-size: 1.3rem;
             font-weight: 900;
-            line-height: 1.3;
+            line-height: 1.4;
             position: relative;
             z-index: 2;
+            flex: 1;
         }
 
         .nav-card-primary {
@@ -398,13 +406,13 @@
 
         /* Timetable Section */
         .timetable {
-            padding: 8rem 2rem;
+            padding: 3rem 2rem;
             background: var(--dark-bg);
         }
 
         .timetable-wrapper {
             max-width: 1000px;
-            margin: 4rem auto 0;
+            margin: 2rem auto 0;
             background: rgba(255, 255, 255, 0.02);
             border: 2px solid rgba(0, 255, 255, 0.3);
             border-radius: 20px;
@@ -450,23 +458,46 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .hero {
+                padding: 2rem 0 3rem;
+            }
+
             .hero-title {
+                font-size: 2.5rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .hero-badge {
+                margin-bottom: 1rem;
+            }
+
+            .hero-subtitle {
+                margin-bottom: 1rem;
+            }
+
+            .objective-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+                padding: 1.5rem;
+            }
+
+            .objective-number {
                 font-size: 3rem;
             }
             
             .objectives,
             .navigation,
             .timetable {
-                padding: 4rem 1.5rem;
+                padding: 2rem 1.5rem;
             }
 
             .nav-grid {
                 grid-template-columns: 1fr;
             }
 
-            .nav-card {
-                aspect-ratio: auto;
-                min-height: 140px;
+            .nav-title {
+                font-size: 1.3rem;
             }
         }
 
@@ -516,12 +547,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="scroll-indicator">
-            <svg viewBox="0 0 24 24" fill="none">
-                <path d="M12 5v14M5 12l7 7 7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        </div>
     </section>
 
     <!-- Objectives Section -->
@@ -560,52 +585,42 @@
         <div class="container">
             <div class="section-header">
                 <div class="section-label">Quick Access</div>
-                <h2 class="section-title">当日ナビ</h2>
+                <h2 class="section-title">メニュー</h2>
             </div>
             
             <div class="nav-grid">
                 <a href="rules.html" class="nav-card nav-card-primary">
                     <div class="nav-number">01</div>
-                    <h3 class="nav-title">活用の<br>基本ルール</h3>
+                    <h3 class="nav-title">活用の基本ルール</h3>
                 </a>
                 
-                <a href="dx.html#co-op" class="nav-card">
+                <a href="dx.html" class="nav-card">
                     <div class="nav-number">02</div>
-                    <h3 class="nav-title">校務<br>共同実技</h3>
+                    <h3 class="nav-title">生成AIの校務活用</h3>
                 </a>
                 
-                <a href="dx.html#solo" class="nav-card">
+                <a href="lx.html" class="nav-card">
                     <div class="nav-number">03</div>
-                    <h3 class="nav-title">校務<br>個別実技</h3>
-                </a>
-                
-                <a href="lx.html#co-op" class="nav-card">
-                    <div class="nav-number">04</div>
-                    <h3 class="nav-title">授業づくり<br>共同実技</h3>
-                </a>
-                
-                <a href="lx.html#solo" class="nav-card">
-                    <div class="nav-number">05</div>
-                    <h3 class="nav-title">授業づくり<br>個別実技</h3>
+                    <h3 class="nav-title">生成AIの授業づくり活用</h3>
                 </a>
                 
                 <a href="use.html" class="nav-card">
-                    <div class="nav-number">06</div>
-                    <h3 class="nav-title">授業利用</h3>
+                    <div class="nav-number">04</div>
+                    <h3 class="nav-title">生成AIの授業での利活用</h3>
                 </a>
                 
                 <a href="reflect.html" class="nav-card">
-                    <div class="nav-number">07</div>
+                    <div class="nav-number">05</div>
                     <h3 class="nav-title">振り返り</h3>
                 </a>
                 
                 <a href="resources.html" class="nav-card nav-card-secondary">
-                    <div class="nav-number">08</div>
+                    <div class="nav-number">06</div>
                     <h3 class="nav-title">資料</h3>
                 </a>
                 
                 <a href="faq.html" class="nav-card nav-card-secondary">
-                    <div class="nav-number">09</div>
+                    <div class="nav-number">07</div>
                     <h3 class="nav-title">FAQ</h3>
                 </a>
             </div>
@@ -621,7 +636,7 @@
             </div>
             
             <div class="timetable-wrapper">
-                <img src="timetable.svg" alt="研修タイムテーブル" class="timetable-image">
+                <img src="timetable.png" alt="研修タイムテーブル" class="timetable-image">
                 <p class="timetable-note">
                     ※本体110分＋前後（オープニング／クロージング）を含めて120分
                 </p>
