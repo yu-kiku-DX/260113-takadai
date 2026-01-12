@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>高台小学校 生成AI活用研修｜校務で使ってみる</title>
+  <title>高台小学校 生成AI活用研修｜生成AIの校務活用</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="preconnect" href="https://fonts.gstatic.com" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -12,21 +12,21 @@
       --bg: #0a0e1a;
       --bg-alt: #151b2e;
       --card-bg: #1a2332;
-      
+
       /* 高コントラストなアクセントカラー */
       --accent-primary: #00d9ff;
       --accent-secondary: #ff6b9d;
       --accent-tertiary: #ffd93d;
-      
+
       /* テキストカラー（高コントラスト） */
       --text-main: #f8f9fa;
       --text-secondary: #c5cdd9;
       --text-muted: #8891a3;
-      
+
       /* ボーダーカラー */
       --border-subtle: #2a3548;
       --border-emphasis: #3d4e6a;
-      
+
       --radius-lg: 20px;
       --radius-md: 14px;
       --shadow-soft: 0 20px 50px rgba(0,0,0,0.6);
@@ -342,9 +342,64 @@
       text-align: center;
     }
 
+    /* ===== inline link（追加） ===== */
+    a.inline-link {
+      color: var(--accent-primary);
+      text-decoration: none;
+      border-bottom: 1.5px dashed rgba(0,217,255,0.5);
+      transition: all var(--transition-fast);
+    }
+    a.inline-link:hover {
+      border-bottom-style: solid;
+      border-bottom-color: var(--accent-primary);
+      color: #00e5ff;
+    }
+
+    /* ===== keep prompt（追加） ===== */
+    .keep-box {
+      margin-top: 10px;
+      padding: 12px 12px 10px;
+      border-radius: 12px;
+      background: rgba(21,27,46,0.85);
+      border: 1.5px solid var(--accent-tertiary);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+    .keep-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--accent-tertiary);
+      margin-bottom: 6px;
+    }
+    .keep-title .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1.5px solid var(--accent-tertiary);
+      color: var(--accent-tertiary);
+      background: rgba(10,14,26,0.7);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+    }
+    .keep-list {
+      margin: 6px 0 0 18px;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+    .keep-list li strong {
+      color: var(--accent-tertiary);
+      font-weight: 700;
+    }
+
     /* フォーカス表示の強化 */
     .back-link:focus-visible,
-    .btn:focus-visible {
+    .btn:focus-visible,
+    a.inline-link:focus-visible {
       outline: 3px solid var(--accent-tertiary);
       outline-offset: 2px;
     }
@@ -387,31 +442,71 @@
         手元のPCで Gemini / ChatGPT を開いて、一緒にやってみてください。
       </p>
 
+      <!-- ★ここが差し替え済み（Lv1〜Lv3） -->
       <div class="card">
         <div class="tag">Demo</div>
-        <h3>DX 演示｜研修案内文をAIでつくる</h3>
+        <h3>DX 演示｜研修案内 → 図解 → フォーム自動作成（Lv1〜Lv3）</h3>
         <p>
-          お知らせにも使える案内文を一気に形にします。
+          まずは「この研修の案内文」を材料に、Lv1〜Lv3で段階的にAI活用を体験します。
         </p>
 
-        <h4>① まずはAIを開く</h4>
-        <p>Gemini か ChatGPT のどちらかを開き、「新しいチャット」を用意します。</p>
+        <h4>Lv1｜研修案内文（ドラフト）を一緒に作る</h4>
+        <ol>
+          <li>Gemini / ChatGPT を開き、「新しいチャット」を用意します。</li>
+          <li>下のプロンプトを貼り付けて開始します。</li>
+          <li>不足情報の確認に答えながら、A4 1枚想定のドラフトを整えます。</li>
+        </ol>
 
-        <h4>② 下のプロンプトをコピーまたは参考にして、AIを動かしてみる</h4>
         <pre>
-役割：小学校の研修担当者
-材料：講師は菊池勇希／生成AIの活用についての体験型研修
-タスク：教職員向けの研修案内ポスターをつくる
-条件：A4用紙1枚に収まるように　　　
+あなたは小学校の研修担当者です。
+教職員向けの生成AIについての研修案内文（A4 1枚想定）のドラフトを、私と一緒に作ってください。
+いきなり完成版を出さずに、まず不足している情報があれば確認してください。
         </pre>
 
-        <h4>③ 出てきた案内文を「自分のことば」に編集</h4>
-        <ul>
-          <li>言い回しがしっくりこないところは、どんどん書き換える。</li>
-          <li>足りない情報は「◯◯も入れて」と追い指示する。</li>
-          <li>最終的に「自分が配付してもいい」と思えたら完成。</li>
-        </ul>
+        <div class="keep-box" role="note" aria-label="キーププロンプト（固定）">
+          <div class="keep-title"><span class="badge">KEEP</span> キーププロンプト（固定）</div>
+          <ul class="keep-list">
+            <li><strong>一緒に考えて欲しい</strong></li>
+            <li><strong>いきなり完成版は出さずに、まず不足している情報があれば確認してください</strong></li>
+          </ul>
+        </div>
+
+        <h4>Lv2｜案内文を「1枚で分かる図解（HTML/CSS）」にする</h4>
+        <ol>
+          <li>Lv1の案内文（確定版 or ほぼ確定版）を、材料としてAIに貼ります。</li>
+          <li>次のキーププロンプトで、HTML/CSS図解を生成します。</li>
+          <li>見出しや並びだけ、学校・研修に合わせて微調整します。</li>
+        </ol>
+
+        <div class="keep-box" role="note" aria-label="キーププロンプト（固定）">
+          <div class="keep-title"><span class="badge">KEEP</span> キーププロンプト（固定）</div>
+          <ul class="keep-list">
+            <li><strong>直感的でわかりやすいHTML・CSS図解を作成して。</strong></li>
+          </ul>
+        </div>
+
+        <h4>Lv3｜事前/事後フォームをGASで自動作成する（発展）</h4>
+        <ol>
+          <li>フォームの目的（事前 or 事後）と、質問項目案をAIに渡します。</li>
+          <li>次のキーププロンプトで、Googleフォーム自動作成用のGASを生成します。</li>
+          <li>Apps Script に貼り付けて実行し、フォームを作成します。</li>
+        </ol>
+
+        <div class="keep-box" role="note" aria-label="キーププロンプト（固定）">
+          <div class="keep-title"><span class="badge">KEEP</span> キーププロンプト（固定）</div>
+          <ul class="keep-list">
+            <li><strong>GASにして</strong></li>
+          </ul>
+        </div>
+
+        <p style="margin-top: 10px;">
+          <strong>参考：</strong>
+          <a class="inline-link" href="https://developers.google.com/apps-script" target="_blank" rel="noreferrer">
+            Google Apps Script（公式）
+          </a>
+        </p>
       </div>
+      <!-- ★差し替えここまで -->
 
       <!-- STEP B -->
       <h2 class="step-title">STEP B｜自分の校務に合わせた個別メニュー</h2>
@@ -542,7 +637,7 @@
     </main>
 
     <footer>
-      高台小学校 生成AI活用研修｜Menu 01 校務で使ってみる
+      高台小学校 生成AI活用研修｜Menu 01 生成AIの校務活用
     </footer>
   </div>
 </body>
