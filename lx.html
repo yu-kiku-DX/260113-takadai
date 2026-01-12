@@ -264,6 +264,47 @@
       color: #00e5ff;
     }
 
+    /* ===== keep prompt ===== */
+    .keep-box {
+      margin-top: 10px;
+      padding: 12px 12px 10px;
+      border-radius: 12px;
+      background: rgba(21,27,46,0.85);
+      border: 1.5px solid var(--accent-secondary);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+    .keep-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--accent-secondary);
+      margin-bottom: 6px;
+    }
+    .keep-title .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1.5px solid var(--accent-secondary);
+      color: var(--accent-secondary);
+      background: rgba(10,14,26,0.7);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+    }
+    .keep-list {
+      margin: 6px 0 0 18px;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+    .keep-list li strong {
+      color: var(--accent-secondary);
+      font-weight: 700;
+    }
+
     /* ===== form section ===== */
     .form-section {
       margin-top: 32px;
@@ -446,6 +487,14 @@
 タスク：単元の「ねらい」「全体の流れ」「評価の観点」のたたき台をつくる
 条件：授業時数8時間で、読みが苦手な子も見通しを持って取り組める構成にする
         </pre>
+
+        <div class="keep-box" role="note" aria-label="キーププロンプト">
+          <div class="keep-title"><span class="badge">KEEP</span> キーププロンプト</div>
+          <ul class="keep-list">
+            <li><strong>Googleスライドで出力できる形にして</strong></li>
+            <li><strong>時間を掛けていいので、質の高いものにしてください</strong></li>
+          </ul>
+        </div>
 
         <h4>③ 出てきた案を「自校・自分仕様」に整える</h4>
         <ul>
