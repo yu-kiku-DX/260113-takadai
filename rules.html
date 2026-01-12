@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>活用の基本ルール | 生成AI活用研修</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Bebas+Neue&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --neon-cyan: #00ffff;
+            --neon-magenta: #ff00ff;
+            --electric-blue: #0066ff;
+            --lime: #00ff00;
+            --dark-bg: #0a0a0f;
+            --darker-bg: #050508;
+            --text-light: #ffffff;
+            --text-gray: #a0a0b0;
+            --warning-red: #ff0055;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        .header {
+            background: var(--darker-bg);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--neon-cyan);
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            gap: 0.75rem;
+            text-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        /* Page Title */
+        .page-title-section {
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+
+        .page-label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            color: var(--neon-cyan);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .page-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            letter-spacing: 0.05em;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--electric-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        /* Content */
+        .content {
+            padding: 0 0 4rem;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            color: var(--neon-magenta);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title::before {
+            content: '▸';
+            color: var(--neon-cyan);
+        }
+
+        /* Purpose */
+        .purpose-text {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            line-height: 1.8;
+            padding: 1rem;
+            background: rgba(0, 255, 255, 0.03);
+            border-left: 3px solid var(--neon-cyan);
+            border-radius: 4px;
+        }
+
+        /* Important Rules Box */
+        .critical-box {
+            background: rgba(255, 0, 85, 0.05);
+            border: 2px solid var(--warning-red);
+            border-radius: 12px;
+            padding: 2rem;
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .critical-box::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--warning-red), var(--neon-magenta));
+            border-radius: 12px;
+            z-index: -1;
+            opacity: 0.3;
+            filter: blur(15px);
+        }
+
+        .critical-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            color: var(--warning-red);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .critical-title::before {
+            content: '⚠';
+            font-size: 1.5rem;
+        }
+
+        .critical-rule {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .critical-rule:last-child {
+            margin-bottom: 0;
+        }
+
+        /* NG Examples */
+        .ng-box {
+            background: rgba(255, 0, 85, 0.03);
+            border: 1px solid rgba(255, 0, 85, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .ng-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .ng-list li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--text-gray);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .ng-list li:last-child {
+            border-bottom: none;
+        }
+
+        .ng-list li::before {
+            content: '✗';
+            position: absolute;
+            left: 0;
+            color: var(--warning-red);
+            font-weight: 900;
+            font-size: 1.2rem;
+        }
+
+        /* OK Examples */
+        .ok-box {
+            background: rgba(0, 255, 0, 0.03);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .ok-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .ok-list li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--text-gray);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .ok-list li:last-child {
+            border-bottom: none;
+        }
+
+        .ok-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--lime);
+            font-weight: 900;
+            font-size: 1.2rem;
+        }
+
+        /* Message Box */
+        .message-box {
+            background: rgba(0, 102, 255, 0.05);
+            border: 1px solid rgba(0, 102, 255, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .message-text {
+            font-size: 1.05rem;
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        /* Details/Summary */
+        .env-details {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .env-summary {
+            padding: 1.25rem;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .env-summary:hover {
+            background: rgba(0, 255, 255, 0.05);
+        }
+
+        .env-summary::before {
+            content: '▸';
+            color: var(--neon-cyan);
+            transition: transform 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .env-details[open] .env-summary::before {
+            transform: rotate(90deg);
+        }
+
+        .env-content {
+            padding: 0 1.25rem 1.25rem;
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        .env-note {
+            margin-top: 0.75rem;
+            padding: 0.75rem;
+            background: rgba(0, 255, 255, 0.05);
+            border-left: 3px solid var(--neon-cyan);
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--darker-bg);
+            border-top: 1px solid rgba(0, 255, 255, 0.2);
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .page-title-section {
+                padding: 2rem 0 1.5rem;
+            }
+
+            .critical-box {
+                padding: 1.5rem;
+            }
+
+            .critical-rule {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="back-link">← メニューへ戻る</a>
+        </div>
+    </header>
+
+    <!-- Page Title -->
+    <section class="page-title-section">
+        <div class="container">
+            <div class="page-label">Safety Guidelines</div>
+            <h1 class="page-title">活用の基本ルール</h1>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <main class="content">
+        <div class="container">
+            <!-- 1. Purpose -->
+            <section class="section">
+                <h2 class="section-title">このページの目的</h2>
+                <p class="purpose-text">
+                    「研修で守る最低限の線引き」と「安全に使う型」を共有する。
+                </p>
+            </section>
+
+            <!-- 2. Important Rules -->
+            <div class="critical-box">
+                <h3 class="critical-title">重要ルール</h3>
+                <div class="critical-rule">個人が特定される情報は入力しない</div>
+                <div class="critical-rule">出力は確かめる（責任は自分）※ネット利用と同じ</div>
+            </div>
+
+            <!-- 3. NG Examples -->
+            <section class="section">
+                <h2 class="section-title">入力NG例</h2>
+                <div class="ng-box">
+                    <ul class="ng-list">
+                        <li>児童名／保護者名／住所／電話番号／顔写真</li>
+                        <li>健康情報（病歴等）／家庭状況／成績と個人が紐づく情報</li>
+                        <li>そのまま貼るのが危ない原文（個人が推測できる文面）</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 4. OK Examples -->
+            <section class="section">
+                <h2 class="section-title">OKにする言い換え（匿名化の型）</h2>
+                <div class="ok-box">
+                    <ul class="ok-list">
+                        <li>「児童A／保護者B」などに置換</li>
+                        <li>要約して必要な条件だけ残す</li>
+                        <li>属性を一般化（例：低学年→2年生、特定地域→市内 など）</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 5. Message -->
+            <section class="section">
+                <h2 class="section-title">ネット利用と同じ</h2>
+                <div class="message-box">
+                    <p class="message-text">
+                        検索と同じで、出力は確認し、判断は利用者が行う。
+                    </p>
+                </div>
+            </section>
+
+            <!-- 6. Environment Notes -->
+            <section class="section">
+                <h2 class="section-title">環境別の注意</h2>
+                
+                <details class="env-details">
+                    <summary class="env-summary">組織Gemini（基本）</summary>
+                    <div class="env-content">
+                        学校の組織アカウントで利用するGeminiです。
+                        <div class="env-note">
+                            <strong>推奨:</strong> データ管理が組織内で行われるため、基本的に安全です。ただし、個人情報は入力しないルールは同じです。
+                        </div>
+                    </div>
+                </details>
+
+                <details class="env-details">
+                    <summary class="env-summary">個人Gemini（注意）</summary>
+                    <div class="env-content">
+                        個人のGoogleアカウントで利用するGeminiです。
+                        <div class="env-note">
+                            <strong>注意:</strong> データがGoogleのサーバーに保存されます。学校の情報や個人情報は絶対に入力しないでください。
+                        </div>
+                    </div>
+                </details>
+
+                <details class="env-details">
+                    <summary class="env-summary">ChatGPT（設定が必要）</summary>
+                    <div class="env-content">
+                        OpenAI社のChatGPTを利用する場合です。
+                        <div class="env-note">
+                            <strong>必須設定:</strong> 設定画面で「データコントロール」から「チャット履歴と訓練」をオフにしてください。オフにしないと、入力内容が学習データとして使用される可能性があります。
+                        </div>
+                    </div>
+                </details>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 高台小学校 生成AI活用研修</p>
+        </div>
+    </footer>
+</body>
+</html>
