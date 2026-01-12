@@ -21,6 +21,12 @@
       --radius-md: 14px;
       --shadow-soft: 0 20px 50px rgba(0,0,0,0.5);
       --transition-fast: 200ms ease-out;
+
+      /* === Yellow accent for Tool/How to cards === */
+      --accent-warm: #fbbf24; /* amber-400 */
+      --accent-warm-strong: #f59e0b; /* amber-500 */
+      --accent-warm-soft: rgba(251,191,36,0.16);
+      --accent-warm-border: rgba(251,191,36,0.35);
     }
 
     * {
@@ -89,13 +95,15 @@
     h1 {
       margin: 0;
       font-family: "Montserrat", system-ui, sans-serif;
-      font-size: clamp(28px, 4vw, 42px);
+      font-size: clamp(32px, 5vw, 52px);
       letter-spacing: 0.04em;
       font-weight: 700;
-      background: linear-gradient(135deg, #e5e7eb 0%, #94a3b8 100%);
+      background: linear-gradient(135deg, #e5e7eb 0%, #38bdf8 50%, #94a3b8 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      text-shadow: 0 0 40px rgba(56,189,248,0.3);
+      filter: drop-shadow(0 0 20px rgba(56,189,248,0.4));
     }
 
     .subtitle {
@@ -128,9 +136,15 @@
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
       gap: 24px;
       margin-bottom: 36px;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
 
     .hero-card {
@@ -215,6 +229,143 @@
       color: #0b1220;
     }
 
+    .hero-side {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .tool-card {
+      background: linear-gradient(145deg, rgba(15,23,42,0.98), rgba(30,41,59,0.95));
+      border-radius: var(--radius-md);
+      padding: 20px 18px 18px;
+      border: 1px solid rgba(31,41,55,0.8);
+      box-shadow: 0 10px 35px rgba(0,0,0,0.5), inset 0 1px 0 rgba(248,250,252,0.06);
+      transition: all var(--transition-fast);
+    }
+
+    .tool-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 45px rgba(0,0,0,0.6), inset 0 1px 0 rgba(248,250,252,0.08);
+      border-color: rgba(56,189,248,0.3);
+    }
+
+    .tool-label {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .tool-title {
+      font-size: 16px;
+      margin: 0 0 6px;
+      font-weight: 600;
+    }
+
+    .tool-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 0 0 14px;
+      line-height: 1.6;
+    }
+
+    .tool-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+      font-weight: 500;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      color: #0b1220;
+      box-shadow: 0 8px 24px rgba(56,189,248,0.4), inset 0 1px 0 rgba(255,255,255,0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(56,189,248,0.6), inset 0 1px 0 rgba(255,255,255,0.4);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-ghost {
+      background: linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,41,59,0.9));
+      border-color: rgba(148,163,184,0.4);
+      color: var(--text-main);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(248,250,252,0.6);
+      background: linear-gradient(135deg, rgba(15,23,42,1), rgba(30,41,59,0.95));
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+    }
+
+    /* === Yellow variant: Tool / How to cards only === */
+    .tool-card.is-warm {
+      background: linear-gradient(145deg, var(--accent-warm-soft), rgba(15,23,42,0.98));
+      border-color: var(--accent-warm-border);
+      box-shadow: 0 10px 35px rgba(0,0,0,0.5), 0 0 0 1px rgba(251,191,36,0.08), inset 0 1px 0 rgba(248,250,252,0.06);
+    }
+
+    .tool-card.is-warm:hover {
+      border-color: rgba(251,191,36,0.55);
+      box-shadow: 0 14px 45px rgba(0,0,0,0.6), 0 0 28px rgba(251,191,36,0.16), inset 0 1px 0 rgba(248,250,252,0.08);
+    }
+
+    .tool-card.is-warm .tool-label {
+      color: rgba(251,191,36,0.9);
+    }
+
+    .tool-card.is-warm .tool-title {
+      color: var(--text-main);
+    }
+
+    .tool-card.is-warm .tool-desc {
+      color: rgba(229,231,235,0.86);
+    }
+
+    .tool-card.is-warm .btn-primary {
+      background: linear-gradient(135deg, var(--accent-warm), var(--accent-warm-strong));
+      color: #0b1220;
+      box-shadow: 0 8px 24px rgba(251,191,36,0.35), inset 0 1px 0 rgba(255,255,255,0.25);
+    }
+
+    .tool-card.is-warm .btn-primary:hover {
+      box-shadow: 0 12px 32px rgba(251,191,36,0.5), inset 0 1px 0 rgba(255,255,255,0.35);
+    }
+
+    .tool-card.is-warm .btn-ghost {
+      border-color: rgba(251,191,36,0.35);
+    }
+
+    .tool-card.is-warm .btn-ghost:hover {
+      border-color: rgba(251,191,36,0.6);
+      box-shadow: 0 6px 16px rgba(251,191,36,0.12);
+    }
+
     .menu-section {
       margin-top: 24px;
     }
@@ -281,16 +432,53 @@
       width: fit-content;
     }
 
-    .menu-tag-primary {
+    .menu-tag-1 {
       background: linear-gradient(135deg, rgba(56,189,248,0.2), rgba(14,165,233,0.15));
-      border-color: rgba(56,189,248,0.4);
+      border-color: rgba(56,189,248,0.5);
       color: #38bdf8;
+      box-shadow: 0 0 15px rgba(56,189,248,0.3);
     }
 
-    .menu-tag-secondary {
-      background: linear-gradient(135deg, rgba(251,191,36,0.2), rgba(249,115,22,0.15));
-      border-color: rgba(251,191,36,0.4);
+    .menu-tag-2 {
+      background: linear-gradient(135deg, rgba(167,139,250,0.2), rgba(139,92,246,0.15));
+      border-color: rgba(167,139,250,0.5);
+      color: #a78bfa;
+      box-shadow: 0 0 15px rgba(167,139,250,0.3);
+    }
+
+    .menu-tag-3 {
+      background: linear-gradient(135deg, rgba(52,211,153,0.2), rgba(16,185,129,0.15));
+      border-color: rgba(52,211,153,0.5);
+      color: #34d399;
+      box-shadow: 0 0 15px rgba(52,211,153,0.3);
+    }
+
+    .menu-tag-4 {
+      background: linear-gradient(135deg, rgba(244,114,182,0.2), rgba(236,72,153,0.15));
+      border-color: rgba(244,114,182,0.5);
+      color: #f472b6;
+      box-shadow: 0 0 15px rgba(244,114,182,0.3);
+    }
+
+    .menu-tag-5 {
+      background: linear-gradient(135deg, rgba(251,146,60,0.2), rgba(249,115,22,0.15));
+      border-color: rgba(251,146,60,0.5);
+      color: #fb923c;
+      box-shadow: 0 0 15px rgba(251,146,60,0.3);
+    }
+
+    .menu-tag-6 {
+      background: linear-gradient(135deg, rgba(251,191,36,0.2), rgba(245,158,11,0.15));
+      border-color: rgba(251,191,36,0.5);
       color: #fbbf24;
+      box-shadow: 0 0 15px rgba(251,191,36,0.3);
+    }
+
+    .menu-tag-7 {
+      background: linear-gradient(135deg, rgba(248,113,113,0.2), rgba(239,68,68,0.15));
+      border-color: rgba(248,113,113,0.5);
+      color: #f87171;
+      box-shadow: 0 0 15px rgba(248,113,113,0.3);
     }
 
     .menu-heading {
@@ -393,6 +581,35 @@
             </ul>
           </div>
         </div>
+
+        <div class="hero-side">
+          <!-- Yellow theme cards: add is-warm -->
+          <div class="tool-card is-warm">
+            <div class="tool-label">Tool</div>
+            <h2 class="tool-title">Gemini / ChatGPT</h2>
+            <p class="tool-desc">
+              一緒に考えつくり出すAI。<br />
+              通知表・行事案内・会議メモ、単元案・授業案づくりに使います。
+            </p>
+            <div class="tool-buttons">
+              <a class="btn btn-primary" href="https://gemini.google.com" target="_blank" rel="noreferrer">
+                Gemini を開く
+              </a>
+              <a class="btn btn-ghost" href="https://chatgpt.com" target="_blank" rel="noreferrer">
+                ChatGPT を開く
+              </a>
+            </div>
+          </div>
+
+          <div class="tool-card is-warm">
+            <div class="tool-label">How to</div>
+            <p class="tool-desc">
+              どのメニューも、<br />
+              「役割・材料・タスク・条件」を
+              意識してプロンプトを組んでみてください。
+            </p>
+          </div>
+        </div>
       </section>
 
       <!-- メニュー -->
@@ -403,7 +620,7 @@
 
         <div class="menu-grid">
           <a href="rules.html" class="menu-card">
-            <div class="menu-tag menu-tag-primary">Menu 01</div>
+            <div class="menu-tag menu-tag-1">Menu 01</div>
             <h3 class="menu-heading">活用の基本ルール</h3>
             <p class="menu-text">
               個人情報保護、著作権、情報の正確性確認など、安全に使うための基本ルールを確認します。
@@ -411,7 +628,7 @@
           </a>
 
           <a href="dx.html" class="menu-card">
-            <div class="menu-tag">Menu 02</div>
+            <div class="menu-tag menu-tag-2">Menu 02</div>
             <h3 class="menu-heading">生成AIの校務活用</h3>
             <p class="menu-text">
               お便り作成、会議資料、通知表など、校務での生成AI活用を実践します。
@@ -419,7 +636,7 @@
           </a>
 
           <a href="lx.html" class="menu-card">
-            <div class="menu-tag">Menu 03</div>
+            <div class="menu-tag menu-tag-3">Menu 03</div>
             <h3 class="menu-heading">生成AIの授業づくり活用</h3>
             <p class="menu-text">
               ワークシート作成、発問の検討、教材開発など、授業準備を効率化します。
@@ -427,7 +644,7 @@
           </a>
 
           <a href="use.html" class="menu-card">
-            <div class="menu-tag">Menu 04</div>
+            <div class="menu-tag menu-tag-4">Menu 04</div>
             <h3 class="menu-heading">生成AIの授業での利活用</h3>
             <p class="menu-text">
               児童が生成AIを使う際の指導方法と注意点を学びます。
@@ -435,7 +652,7 @@
           </a>
 
           <a href="reflect.html" class="menu-card">
-            <div class="menu-tag">Menu 05</div>
+            <div class="menu-tag menu-tag-5">Menu 05</div>
             <h3 class="menu-heading">振り返り</h3>
             <p class="menu-text">
               研修で学んだことを整理し、明日からのアクションプランを立てます。
@@ -443,7 +660,7 @@
           </a>
 
           <a href="resources.html" class="menu-card">
-            <div class="menu-tag menu-tag-secondary">Menu 06</div>
+            <div class="menu-tag menu-tag-6">Menu 06</div>
             <h3 class="menu-heading">資料</h3>
             <p class="menu-text">
               参考資料、プロンプト集、外部リンクなど、役立つ情報をまとめています。
@@ -451,7 +668,7 @@
           </a>
 
           <a href="faq.html" class="menu-card">
-            <div class="menu-tag menu-tag-secondary">Menu 07</div>
+            <div class="menu-tag menu-tag-7">Menu 07</div>
             <h3 class="menu-heading">FAQ</h3>
             <p class="menu-text">
               よくある質問とその回答をまとめています。
