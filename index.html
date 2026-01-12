@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生成AI活用研修 | 高台小学校</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Bebas+Neue&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --neon-cyan: #00ffff;
+            --neon-magenta: #ff00ff;
+            --electric-blue: #0066ff;
+            --lime: #00ff00;
+            --dark-bg: #0a0a0f;
+            --darker-bg: #050508;
+            --text-light: #ffffff;
+            --text-gray: #a0a0b0;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: var(--darker-bg);
+        }
+
+        .grid-bg {
+            position: absolute;
+            inset: 0;
+            background: 
+                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+        }
+
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.4;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: var(--neon-cyan);
+            top: -200px;
+            left: -200px;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--neon-magenta);
+            bottom: -150px;
+            right: -150px;
+            animation-delay: -5s;
+        }
+
+        .orb-3 {
+            width: 300px;
+            height: 300px;
+            background: var(--electric-blue);
+            top: 50%;
+            left: 50%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, -50px) scale(1.1); }
+            66% { transform: translate(-30px, 30px) scale(0.9); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 1200px;
+            padding: 0 2rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid var(--neon-cyan);
+            border-radius: 50px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--neon-cyan);
+            margin-bottom: 2rem;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-cyan); }
+            50% { box-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan), 0 0 30px var(--neon-cyan); }
+        }
+
+        .hero-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-weight: 400;
+            line-height: 0.9;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-magenta), var(--lime));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 5s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-subtitle {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1rem, 3vw, 2rem);
+            font-weight: 700;
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+            letter-spacing: 0.2em;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .meta-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meta-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+            animation: scan 3s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .meta-card:hover {
+            background: rgba(0, 255, 255, 0.05);
+            border-color: var(--neon-cyan);
+            transform: translateY(-5px);
+        }
+
+        .meta-label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            color: var(--neon-cyan);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .meta-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-light);
+        }
+
+        /* Objectives Section */
+        .objectives {
+            padding: 8rem 2rem;
+            background: var(--dark-bg);
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            color: var(--neon-magenta);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            letter-spacing: 0.05em;
+            background: linear-gradient(135deg, var(--text-light), var(--text-gray));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .objective-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px solid transparent;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            position: relative;
+            transition: all 0.5s ease;
+        }
+
+        .objective-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .objective-card:hover::before {
+            opacity: 1;
+        }
+
+        .objective-card:hover {
+            transform: translateY(-10px);
+            background: rgba(0, 255, 255, 0.03);
+        }
+
+        .objective-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 5rem;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--electric-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .objective-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--text-gray);
+        }
+
+        .objective-text strong {
+            color: var(--text-light);
+            font-weight: 700;
+        }
+
+        /* Navigation Section */
+        .navigation {
+            padding: 8rem 2rem;
+            background: var(--darker-bg);
+            position: relative;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .nav-card {
+            position: relative;
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 16px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
+            text-decoration: none;
+            color: var(--text-light);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--neon-cyan) 0%, var(--electric-blue) 100%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .nav-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .nav-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 20px 60px rgba(0, 255, 255, 0.3);
+        }
+
+        .nav-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--neon-cyan);
+            position: relative;
+            z-index: 2;
+        }
+
+        .nav-title {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 900;
+            line-height: 1.3;
+            position: relative;
+            z-index: 2;
+        }
+
+        .nav-card-primary {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(0, 102, 255, 0.1));
+            border-color: var(--neon-cyan);
+        }
+
+        .nav-card-primary .nav-number {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 20px var(--neon-cyan);
+        }
+
+        .nav-card-secondary {
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(0, 255, 0, 0.1));
+            border-color: var(--neon-magenta);
+        }
+
+        .nav-card-secondary .nav-number {
+            color: var(--neon-magenta);
+            text-shadow: 0 0 20px var(--neon-magenta);
+        }
+
+        /* Timetable Section */
+        .timetable {
+            padding: 8rem 2rem;
+            background: var(--dark-bg);
+        }
+
+        .timetable-wrapper {
+            max-width: 1000px;
+            margin: 4rem auto 0;
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .timetable-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-magenta), var(--lime));
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0.3;
+            filter: blur(20px);
+        }
+
+        .timetable-image {
+            width: 100%;
+            border-radius: 12px;
+        }
+
+        .timetable-note {
+            margin-top: 1.5rem;
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            font-style: italic;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--darker-bg);
+            border-top: 1px solid rgba(0, 255, 255, 0.2);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: var(--text-gray);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .objectives,
+            .navigation,
+            .timetable {
+                padding: 4rem 1.5rem;
+            }
+
+            .nav-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-card {
+                aspect-ratio: auto;
+                min-height: 140px;
+            }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            stroke: var(--neon-cyan);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="grid-bg"></div>
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        
+        <div class="hero-content">
+            <div class="hero-badge">AI Training 2026</div>
+            <h1 class="hero-title">生成AI活用研修</h1>
+            <p class="hero-subtitle">＠高台小学校</p>
+            
+            <div class="meta-grid">
+                <div class="meta-card">
+                    <div class="meta-label">Date & Time</div>
+                    <div class="meta-value">2026.01.13 (火)<br>14:00–16:00</div>
+                </div>
+                <div class="meta-card">
+                    <div class="meta-label">Location</div>
+                    <div class="meta-value">高台小学校<br>4年2組教室</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 5v14M5 12l7 7 7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Objectives Section -->
+    <section class="objectives">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Training Goals</div>
+                <h2 class="section-title">研修目標</h2>
+            </div>
+            
+            <div class="objectives-grid">
+                <div class="objective-card">
+                    <div class="objective-number">01</div>
+                    <p class="objective-text">
+                        生成AIの<strong>「便利さ」と「危うさ」の両面</strong>を捉え、学校現場で安全に活用するための基本（線引き）を理解する。
+                    </p>
+                </div>
+                <div class="objective-card">
+                    <div class="objective-number">02</div>
+                    <p class="objective-text">
+                        校務と授業づくりにおいて、<strong>「たたき台生成→見える化」の共同実技</strong>を完了し、必要に応じて個別最適に発展させる。
+                    </p>
+                </div>
+                <div class="objective-card">
+                    <div class="objective-number">03</div>
+                    <p class="objective-text">
+                        明日から実行できる<strong>"具体的な一手"を1つ以上決めて</strong>持ち帰る。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation Section -->
+    <section class="navigation">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Quick Access</div>
+                <h2 class="section-title">当日ナビ</h2>
+            </div>
+            
+            <div class="nav-grid">
+                <a href="rules.html" class="nav-card nav-card-primary">
+                    <div class="nav-number">01</div>
+                    <h3 class="nav-title">活用の<br>基本ルール</h3>
+                </a>
+                
+                <a href="dx.html#co-op" class="nav-card">
+                    <div class="nav-number">02</div>
+                    <h3 class="nav-title">校務<br>共同実技</h3>
+                </a>
+                
+                <a href="dx.html#solo" class="nav-card">
+                    <div class="nav-number">03</div>
+                    <h3 class="nav-title">校務<br>個別実技</h3>
+                </a>
+                
+                <a href="lx.html#co-op" class="nav-card">
+                    <div class="nav-number">04</div>
+                    <h3 class="nav-title">授業づくり<br>共同実技</h3>
+                </a>
+                
+                <a href="lx.html#solo" class="nav-card">
+                    <div class="nav-number">05</div>
+                    <h3 class="nav-title">授業づくり<br>個別実技</h3>
+                </a>
+                
+                <a href="use.html" class="nav-card">
+                    <div class="nav-number">06</div>
+                    <h3 class="nav-title">授業利用</h3>
+                </a>
+                
+                <a href="reflect.html" class="nav-card">
+                    <div class="nav-number">07</div>
+                    <h3 class="nav-title">振り返り</h3>
+                </a>
+                
+                <a href="resources.html" class="nav-card nav-card-secondary">
+                    <div class="nav-number">08</div>
+                    <h3 class="nav-title">資料</h3>
+                </a>
+                
+                <a href="faq.html" class="nav-card nav-card-secondary">
+                    <div class="nav-number">09</div>
+                    <h3 class="nav-title">FAQ</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timetable Section -->
+    <section class="timetable">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Schedule</div>
+                <h2 class="section-title">タイムテーブル</h2>
+            </div>
+            
+            <div class="timetable-wrapper">
+                <img src="timetable.svg" alt="研修タイムテーブル" class="timetable-image">
+                <p class="timetable-note">
+                    ※本体110分＋前後（オープニング／クロージング）を含めて120分
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 高台小学校 生成AI活用研修</p>
+        </div>
+    </footer>
+</body>
+</html>
