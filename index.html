@@ -21,12 +21,6 @@
       --radius-md: 14px;
       --shadow-soft: 0 20px 50px rgba(0,0,0,0.5);
       --transition-fast: 200ms ease-out;
-
-      /* === Yellow accent for Tool/How to cards === */
-      --accent-warm: #fbbf24; /* amber-400 */
-      --accent-warm-strong: #f59e0b; /* amber-500 */
-      --accent-warm-soft: rgba(251,191,36,0.16);
-      --accent-warm-border: rgba(251,191,36,0.35);
     }
 
     * {
@@ -323,49 +317,6 @@
       box-shadow: 0 6px 16px rgba(0,0,0,0.4);
     }
 
-    /* === Yellow variant: Tool / How to cards only === */
-    .tool-card.is-warm {
-      background: linear-gradient(145deg, var(--accent-warm-soft), rgba(15,23,42,0.98));
-      border-color: var(--accent-warm-border);
-      box-shadow: 0 10px 35px rgba(0,0,0,0.5), 0 0 0 1px rgba(251,191,36,0.08), inset 0 1px 0 rgba(248,250,252,0.06);
-    }
-
-    .tool-card.is-warm:hover {
-      border-color: rgba(251,191,36,0.55);
-      box-shadow: 0 14px 45px rgba(0,0,0,0.6), 0 0 28px rgba(251,191,36,0.16), inset 0 1px 0 rgba(248,250,252,0.08);
-    }
-
-    .tool-card.is-warm .tool-label {
-      color: rgba(251,191,36,0.9);
-    }
-
-    .tool-card.is-warm .tool-title {
-      color: var(--text-main);
-    }
-
-    .tool-card.is-warm .tool-desc {
-      color: rgba(229,231,235,0.86);
-    }
-
-    .tool-card.is-warm .btn-primary {
-      background: linear-gradient(135deg, var(--accent-warm), var(--accent-warm-strong));
-      color: #0b1220;
-      box-shadow: 0 8px 24px rgba(251,191,36,0.35), inset 0 1px 0 rgba(255,255,255,0.25);
-    }
-
-    .tool-card.is-warm .btn-primary:hover {
-      box-shadow: 0 12px 32px rgba(251,191,36,0.5), inset 0 1px 0 rgba(255,255,255,0.35);
-    }
-
-    .tool-card.is-warm .btn-ghost {
-      border-color: rgba(251,191,36,0.35);
-    }
-
-    .tool-card.is-warm .btn-ghost:hover {
-      border-color: rgba(251,191,36,0.6);
-      box-shadow: 0 6px 16px rgba(251,191,36,0.12);
-    }
-
     .menu-section {
       margin-top: 24px;
     }
@@ -481,6 +432,18 @@
       box-shadow: 0 0 15px rgba(248,113,113,0.3);
     }
 
+    .menu-tag-primary {
+      background: linear-gradient(135deg, rgba(56,189,248,0.2), rgba(14,165,233,0.15));
+      border-color: rgba(56,189,248,0.4);
+      color: #38bdf8;
+    }
+
+    .menu-tag-secondary {
+      background: linear-gradient(135deg, rgba(251,191,36,0.2), rgba(249,115,22,0.15));
+      border-color: rgba(251,191,36,0.4);
+      color: #fbbf24;
+    }
+
     .menu-heading {
       font-size: 16px;
       margin: 4px 0 0;
@@ -521,6 +484,64 @@
       color: var(--text-muted);
       font-size: 13px;
       font-style: italic;
+    }
+
+    /* Resources & Survey */
+    .resources-section {
+      margin-top: 48px;
+    }
+
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 18px;
+    }
+
+    @media (max-width: 768px) {
+      .resources-grid {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+
+    .resource-card {
+      background: linear-gradient(145deg, rgba(15,23,42,0.98), rgba(30,41,59,0.95));
+      border-radius: var(--radius-md);
+      padding: 24px 20px;
+      border: 1px solid rgba(31,41,55,0.8);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.45), inset 0 1px 0 rgba(248,250,252,0.06);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 12px;
+      transition: all var(--transition-fast);
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .resource-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 42px rgba(0,0,0,0.55), inset 0 1px 0 rgba(248,250,252,0.08);
+      border-color: rgba(251,191,36,0.4);
+    }
+
+    .resource-icon {
+      font-size: 48px;
+      line-height: 1;
+      filter: drop-shadow(0 0 20px rgba(251,191,36,0.3));
+    }
+
+    .resource-heading {
+      font-size: 18px;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .resource-text {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin: 0;
     }
 
     footer {
@@ -583,8 +604,7 @@
         </div>
 
         <div class="hero-side">
-          <!-- Yellow theme cards: add is-warm -->
-          <div class="tool-card is-warm">
+          <div class="tool-card">
             <div class="tool-label">Tool</div>
             <h2 class="tool-title">Gemini / ChatGPT</h2>
             <p class="tool-desc">
@@ -601,7 +621,7 @@
             </div>
           </div>
 
-          <div class="tool-card is-warm">
+          <div class="tool-card">
             <div class="tool-label">How to</div>
             <p class="tool-desc">
               どのメニューも、<br />
@@ -658,22 +678,6 @@
               研修で学んだことを整理し、明日からのアクションプランを立てます。
             </p>
           </a>
-
-          <a href="resources.html" class="menu-card">
-            <div class="menu-tag menu-tag-6">Menu 06</div>
-            <h3 class="menu-heading">資料</h3>
-            <p class="menu-text">
-              参考資料、プロンプト集、外部リンクなど、役立つ情報をまとめています。
-            </p>
-          </a>
-
-          <a href="faq.html" class="menu-card">
-            <div class="menu-tag menu-tag-7">Menu 07</div>
-            <h3 class="menu-heading">FAQ</h3>
-            <p class="menu-text">
-              よくある質問とその回答をまとめています。
-            </p>
-          </a>
         </div>
       </section>
 
@@ -687,6 +691,30 @@
           <p class="timetable-note">
             ※本体110分＋前後（オープニング／クロージング）を含めて120分
           </p>
+        </div>
+      </section>
+
+      <!-- 資料・アンケート -->
+      <section class="resources-section">
+        <div class="menu-title-row">
+          <h2 class="menu-title">その他</h2>
+        </div>
+        <div class="resources-grid">
+          <a href="resources.html" class="resource-card">
+            <div class="resource-icon">📚</div>
+            <h3 class="resource-heading">資料</h3>
+            <p class="resource-text">
+              研修で使用した資料、過去の発表資料、役立つ外部リンクなどをまとめています。
+            </p>
+          </a>
+
+          <a href="#" class="resource-card" target="_blank" rel="noreferrer">
+            <div class="resource-icon">📝</div>
+            <h3 class="resource-heading">評価アンケート</h3>
+            <p class="resource-text">
+              研修の感想や改善点をお聞かせください。今後の研修の質向上に活用させていただきます。
+            </p>
+          </a>
         </div>
       </section>
 
