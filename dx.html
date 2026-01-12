@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>高台小学校 生成AI活用研修｜校務で使ってみる</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      /* 色覚配慮の配色設計 - index.htmlと統一 */
+      --bg: #0a0e1a;
+      --bg-alt: #151b2e;
+      --card-bg: #1a2332;
+      
+      /* 高コントラストなアクセントカラー */
+      --accent-primary: #00d9ff;
+      --accent-secondary: #ff6b9d;
+      --accent-tertiary: #ffd93d;
+      
+      /* テキストカラー（高コントラスト） */
+      --text-main: #f8f9fa;
+      --text-secondary: #c5cdd9;
+      --text-muted: #8891a3;
+      
+      /* ボーダーカラー */
+      --border-subtle: #2a3548;
+      --border-emphasis: #3d4e6a;
+      
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --shadow-soft: 0 20px 50px rgba(0,0,0,0.6);
+      --shadow-emphasis: 0 8px 32px rgba(0,217,255,0.2);
+      --transition-fast: 200ms ease-out;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Noto Sans JP", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-main);
+      background: radial-gradient(ellipse at top, #1a2332 0%, #0f1520 40%, #0a0e1a 100%);
+      display: flex;
+      justify-content: center;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1120px;
+      padding: 32px 20px 40px;
+    }
+
+    /* ===== header ===== */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .title-block-small {
+      font-family: "Montserrat", system-ui, sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .page-title {
+      margin: 0;
+      font-family: "Montserrat", system-ui, sans-serif;
+      font-size: clamp(22px, 3vw, 30px);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #f8f9fa 0%, var(--accent-primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-subtitle {
+      margin: 6px 0 0;
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .back-link {
+      font-size: 12px;
+      color: var(--text-main);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1.5px solid var(--border-emphasis);
+      background: rgba(26,35,50,0.8);
+      white-space: nowrap;
+      transition: all var(--transition-fast);
+      font-weight: 500;
+    }
+    .back-link:hover {
+      border-color: var(--accent-primary);
+      color: var(--accent-primary);
+      background: rgba(26,35,50,0.95);
+      transform: translateX(-2px);
+    }
+
+    h2 {
+      font-size: 18px;
+      margin: 0 0 8px;
+      color: var(--text-main);
+    }
+
+    .lead {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+      line-height: 1.7;
+    }
+
+    /* ===== step title ===== */
+    .step-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 24px 0 8px;
+      padding-left: 12px;
+      border-left: 3px solid var(--accent-primary);
+      letter-spacing: 0.04em;
+      color: var(--text-main);
+    }
+
+    /* ===== card ===== */
+    .card {
+      background: linear-gradient(145deg, rgba(26,35,50,0.85), rgba(42,53,72,0.7));
+      border-radius: var(--radius-md);
+      padding: 18px 16px 16px;
+      border: 1.5px solid var(--border-emphasis);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,217,255,0.08);
+      font-size: 13px;
+      margin-bottom: 16px;
+      transition: all var(--transition-fast);
+    }
+
+    .card:hover {
+      border-color: var(--accent-primary);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.6), var(--shadow-emphasis);
+      transform: translateY(-2px);
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 15px;
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .card h4 {
+      margin: 10px 0 4px;
+      font-size: 13px;
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .card p {
+      margin: 4px 0;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .card ul, .card ol {
+      margin: 6px 0 4px 18px;
+      padding: 0;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      font-size: 13px;
+    }
+
+    .card strong {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    /* ===== tag ===== */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 10px;
+      background: rgba(26,35,50,0.8);
+      border: 1.5px solid var(--accent-primary);
+      color: var(--accent-primary);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 8px;
+      width: fit-content;
+    }
+
+    /* タグのバリエーション */
+    .card:nth-child(1) .tag {
+      border-color: var(--accent-primary);
+      color: var(--accent-primary);
+    }
+
+    .card:nth-child(2) .tag {
+      border-color: var(--accent-secondary);
+      color: var(--accent-secondary);
+    }
+
+    .card:nth-child(3) .tag {
+      border-color: var(--accent-tertiary);
+      color: var(--accent-tertiary);
+    }
+
+    .card:nth-child(4) .tag {
+      border-color: var(--accent-primary);
+      color: var(--accent-primary);
+    }
+
+    .card:nth-child(5) .tag {
+      border-color: var(--accent-secondary);
+      color: var(--accent-secondary);
+    }
+
+    /* ===== pre ===== */
+    pre {
+      white-space: pre-wrap;
+      font-size: 12px;
+      font-family: "SF Mono","Consolas","Menlo",monospace;
+      color: var(--text-main);
+      background: rgba(10,14,26,0.95);
+      padding: 12px;
+      border-radius: 8px;
+      border: 1.5px solid var(--border-emphasis);
+      margin-top: 8px;
+      line-height: 1.5;
+      box-shadow: inset 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    /* ===== grid menu ===== */
+    .grid-menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    /* ===== form section ===== */
+    .form-section {
+      margin-top: 32px;
+      padding: 24px 20px;
+      border-radius: 16px;
+      background: linear-gradient(145deg, rgba(26,35,50,0.85), rgba(21,27,46,0.95));
+      border: 2px solid var(--border-emphasis);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,217,255,0.1);
+      text-align: left;
+      transition: all var(--transition-fast);
+    }
+
+    .form-section:hover {
+      border-color: var(--accent-primary);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6), var(--shadow-emphasis);
+    }
+
+    .section-title {
+      margin: 0 0 8px;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: var(--text-main);
+    }
+
+    .section-text {
+      margin: 0 0 16px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ===== button ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      border: 2px solid transparent;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-primary), #0099cc);
+      color: #0a0e1a;
+      border-color: var(--accent-primary);
+      box-shadow: 0 8px 24px rgba(0,217,255,0.35), inset 0 1px 0 rgba(255,255,255,0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(0,217,255,0.5), inset 0 1px 0 rgba(255,255,255,0.4);
+      background: linear-gradient(135deg, #00e5ff, var(--accent-primary));
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-secondary {
+      background: rgba(26,35,50,0.8);
+      color: var(--text-main);
+      border-color: var(--border-emphasis);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent-primary);
+      background: rgba(26,35,50,0.95);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(0,217,255,0.2);
+      color: var(--accent-primary);
+    }
+
+    /* ===== footer ===== */
+    footer {
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1.5px solid var(--border-emphasis);
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* フォーカス表示の強化 */
+    .back-link:focus-visible,
+    .btn:focus-visible {
+      outline: 3px solid var(--accent-tertiary);
+      outline-offset: 2px;
+    }
+
+    /* レスポンシブ調整 */
+    @media (max-width: 640px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .back-link {
+        align-self: flex-start;
+      }
+
+      .grid-menu {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div>
+        <div class="title-block-small">高台小学校 生成AI活用研修</div>
+        <h1 class="page-title">Menu 01｜校務で使ってみる</h1>
+        <p class="page-subtitle">
+          通知表・行事・会議メモなど、「いつもの校務」をAIと一緒にアップデートしてみる時間です。
+        </p>
+      </div>
+      <a class="back-link" href="index.html">← トップに戻る</a>
+    </header>
+
+    <main>
+      <!-- STEP A -->
+      <h2 class="step-title">STEP A｜全員でやってみる校務DX</h2>
+      <p class="lead">
+        まずは「このAI研修そのもの」を材料に、教職員向けの研修案内文をAIに書かせてみます。<br>
+        手元のPCで Gemini / ChatGPT を開いて、一緒にやってみてください。
+      </p>
+
+      <div class="card">
+        <div class="tag">Demo</div>
+        <h3>DX 演示｜研修案内文をAIでつくる</h3>
+        <p>
+          お知らせにも使える案内文を一気に形にします。
+        </p>
+
+        <h4>① まずはAIを開く</h4>
+        <p>Gemini か ChatGPT のどちらかを開き、「新しいチャット」を用意します。</p>
+
+        <h4>② 下のプロンプトをコピーまたは参考にして、AIを動かしてみる</h4>
+        <pre>
+役割：小学校の研修担当者
+材料：講師は菊池勇希／生成AIの活用についての体験型研修
+タスク：教職員向けの研修案内ポスターをつくる
+条件：A4用紙1枚に収まるように　　　
+        </pre>
+
+        <h4>③ 出てきた案内文を「自分のことば」に編集</h4>
+        <ul>
+          <li>言い回しがしっくりこないところは、どんどん書き換える。</li>
+          <li>足りない情報は「◯◯も入れて」と追い指示する。</li>
+          <li>最終的に「自分が配付してもいい」と思えたら完成。</li>
+        </ul>
+      </div>
+
+      <!-- STEP B -->
+      <h2 class="step-title">STEP B｜自分の校務に合わせた個別メニュー</h2>
+      <p class="lead">
+        次は、自分の担当している校務に近いものを1つ選んでチャレンジします。<br>
+        下の5つの中から「今日これを試したい」というものを1つ選んで、同じようにAIに相談してみてください。
+      </p>
+
+      <div class="grid-menu">
+        <!-- DX-個① -->
+        <div class="card">
+          <div class="tag">DX-個①</div>
+          <h3>学級通信、学校連絡メール、行事案内文書のたたき台の作成</h3>
+          <p><strong>こんなときに</strong></p>
+          <ul>
+            <li>学級通信や学校メールを書き始めるまでが重い。</li>
+            <li>行事案内文書を毎回ゼロから書くのが負担になっている。</li>
+            <li>昨年度の文面をベースに、今年度版にアップデートしたい。</li>
+          </ul>
+          <p><strong>AIに渡す材料の例</strong></p>
+          <ul>
+            <li>昨年度の学級通信・学校メール・行事案内の文書（テキスト or コピペ）</li>
+            <li>今年度の「変更点メモ」（日時・内容の違い／追加された配慮事項など）</li>
+            <li>今回特に強調したいポイント（例：安全面・ねらい・子どもに期待する姿）</li>
+          </ul>
+          <p>
+            ※ 昨年度の文書を一緒に貼ると、<br>
+            学校らしい言い回しや雰囲気を踏まえた案が出やすくなります。
+          </p>
+        </div>
+
+        <!-- DX-個② -->
+        <div class="card">
+          <div class="tag">DX-個②</div>
+          <h3>保護者への連絡・返信メールのたたき台の作成</h3>
+          <p><strong>こんなときに</strong></p>
+          <ul>
+            <li>保護者からの連絡に対して、適切な返信を素早く作りたい。</li>
+            <li>配慮のある言い回しで、しっかりとした内容の返信を送りたい。</li>
+          </ul>
+          <p><strong>AIに渡す材料の例</strong></p>
+          <ul>
+            <li>保護者から受け取った連絡の内容（体調不良の連絡、相談事項など）</li>
+            <li>返信で伝えたい大まかな内容（例：お大事に、次回の対応、確認事項など）</li>
+          </ul>
+          <p>
+            ※ 「保護者からこういう連絡が来ました。こういう内容で返信したいです」と伝えるだけで、<br>
+            配慮のある言い回しを含めた返信のたたき台をAIが提案してくれます。
+          </p>
+        </div>
+
+        <!-- DX-個③ -->
+        <div class="card">
+          <div class="tag">DX-個③</div>
+          <h3>通知表所見のたたき台</h3>
+          <p><strong>こんなときに</strong></p>
+          <ul>
+            <li>メモはたくさんあるのに、所見の文章にまとめるところで手が止まる。</li>
+            <li>児童一人ひとりの良さを、限られた字数の中でバランスよく表現したい。</li>
+          </ul>
+          <p><strong>AIに渡す材料の例</strong></p>
+          <ul>
+            <li>学習面・生活面・特に伝えたいエピソードを箇条書き</li>
+            <li>その子に伝えたいメッセージのキーワード（例：ねばり強さ／やさしさ）</li>
+            <li>学校として避けたい表現・配慮したい点</li>
+          </ul>
+        </div>
+
+        <!-- DX-個④ -->
+        <div class="card">
+          <div class="tag">DX-個④</div>
+          <h3>行事の提案文書 → 反省フォームに変換</h3>
+          <p><strong>こんなときに</strong></p>
+          <ul>
+            <li>行事の要項はあるが、事後アンケートやふり返りフォームを作る時間がない。</li>
+            <li>「ねらいの達成」「運営」「安全」など、改善に直結する観点で意見を集めたい。</li>
+          </ul>
+          <p><strong>AIに渡す材料の例</strong></p>
+          <ul>
+            <li>行事の提案文書／要項（ねらい・内容・役割分担など）</li>
+            <li>アンケートを取りたい相手（教員／保護者／子ども）</li>
+            <li>次年度に特に改善したいポイント</li>
+          </ul>
+        </div>
+
+        <!-- DX-個⑤ -->
+        <div class="card">
+          <div class="tag">DX-個⑤</div>
+          <h3>反省フォームから次年度への改善提案を作る</h3>
+          <p><strong>こんなときに</strong></p>
+          <ul>
+            <li>Googleフォームなどで行事のふり返りは集めたが、改善案に落とし込む時間がない。</li>
+            <li>教員・保護者・子どもの声を整理して、「次年度への提案」にまとめたい。</li>
+          </ul>
+          <p><strong>AIに渡す材料の例</strong></p>
+          <ul>
+            <li>反省フォームの質問項目と、主な回答の抜粋（または集計の概要）</li>
+            <li>特に改善したい観点（例：ねらいの達成度／安全面／準備の負担／役割分担）</li>
+            <li>次年度も継続したい良さ・残したい文化のメモ</li>
+          </ul>
+          <p>
+            ※ 「結果の要約」と「次年度の具体的な改善提案」を<br>
+            それぞれ見出し付きで出してもらうように頼むと整理されやすくなります。
+          </p>
+        </div>
+      </div>
+
+      <!-- 共有フォーム -->
+      <section class="form-section">
+        <h2 class="section-title">校務AIワークの共有フォーム</h2>
+        <p class="section-text">
+          今日ためしてみた校務AIワーク（DX）の成果を共有するフォームです。<br>
+          「これは残しておきたい」「他の先生にも見てほしい」と思うものを、1つ選んで送信してください。
+        </p>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <a class="btn btn-primary"
+             href="https://docs.google.com/forms/d/e/1FAIpQLSdU7AbAqbdUxfKDm_UGk2_8sNWK5hWFMqJ9bbQ_pUpblIQFNw/viewform"
+             target="_blank" rel="noreferrer">
+            DXフォームを開く
+          </a>
+          <a class="btn btn-secondary"
+             href="https://docs.google.com/spreadsheets/d/1w2_rwg5v4wLnZRhVETyFjArZJGBbD-dlnwm3b2oREKc/edit?usp=sharing"
+             target="_blank" rel="noreferrer">
+            みんなの回答
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      高台小学校 生成AI活用研修｜Menu 01 校務で使ってみる
+    </footer>
+  </div>
+</body>
+</html>
