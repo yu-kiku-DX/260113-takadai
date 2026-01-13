@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>高台小学校 生成AI活用研修｜資料</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      /* 色覚配慮の配色設計 - 統一デザインシステム */
+      --bg: #0a0e1a;
+      --bg-alt: #151b2e;
+      --card-bg: #1a2332;
+      
+      /* 高コントラストなアクセントカラー */
+      --accent-primary: #00d9ff;
+      --accent-secondary: #ff6b9d;
+      --accent-tertiary: #ffd93d;
+      
+      /* テキストカラー（高コントラスト） */
+      --text-main: #f8f9fa;
+      --text-secondary: #c5cdd9;
+      --text-muted: #8891a3;
+      
+      /* ボーダーカラー */
+      --border-subtle: #2a3548;
+      --border-emphasis: #3d4e6a;
+      
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --shadow-soft: 0 20px 50px rgba(0,0,0,0.6);
+      --shadow-emphasis: 0 8px 32px rgba(0,217,255,0.2);
+      --transition-fast: 200ms ease-out;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Noto Sans JP", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-main);
+      background: radial-gradient(ellipse at top, #1a2332 0%, #0f1520 40%, #0a0e1a 100%);
+      display: flex;
+      justify-content: center;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1120px;
+      padding: 32px 20px 40px;
+    }
+
+    /* ===== header ===== */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .title-block-small {
+      font-family: "Montserrat", system-ui, sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .page-title {
+      margin: 0;
+      font-family: "Montserrat", system-ui, sans-serif;
+      font-size: clamp(22px, 3vw, 30px);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #f8f9fa 0%, var(--accent-primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-subtitle {
+      margin: 6px 0 0;
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .back-link {
+      font-size: 12px;
+      color: var(--text-main);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1.5px solid var(--border-emphasis);
+      background: rgba(26,35,50,0.8);
+      white-space: nowrap;
+      transition: all var(--transition-fast);
+      font-weight: 500;
+    }
+    .back-link:hover {
+      border-color: var(--accent-primary);
+      color: var(--accent-primary);
+      background: rgba(26,35,50,0.95);
+      transform: translateX(-2px);
+    }
+
+    /* ===== section ===== */
+    .section {
+      margin-bottom: 32px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0 0 12px;
+      padding-left: 12px;
+      border-left: 3px solid var(--accent-primary);
+      letter-spacing: 0.04em;
+      color: var(--text-main);
+    }
+
+    .section-description {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin: 0 0 16px;
+      line-height: 1.7;
+    }
+
+    /* ===== card ===== */
+    .card {
+      background: linear-gradient(145deg, rgba(26,35,50,0.85), rgba(42,53,72,0.7));
+      border-radius: var(--radius-md);
+      padding: 18px 16px;
+      border: 1.5px solid var(--border-emphasis);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,217,255,0.08);
+      margin-bottom: 12px;
+      transition: all var(--transition-fast);
+    }
+
+    .card:hover {
+      border-color: var(--accent-primary);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.6), var(--shadow-emphasis);
+      transform: translateY(-2px);
+    }
+
+    .card-title {
+      margin: 0 0 8px;
+      font-size: 15px;
+      color: var(--text-main);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-title::before {
+      content: "📄";
+      font-size: 18px;
+    }
+
+    .card-description {
+      margin: 4px 0 12px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ===== grid layout ===== */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .file-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .file-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      background: rgba(10,14,26,0.5);
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 8px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      transition: all var(--transition-fast);
+    }
+
+    .file-item:hover {
+      border-color: var(--accent-primary);
+      background: rgba(10,14,26,0.7);
+    }
+
+    .file-icon {
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .file-name {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* ===== link card ===== */
+    .link-card {
+      background: linear-gradient(145deg, rgba(26,35,50,0.85), rgba(42,53,72,0.7));
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      border: 1.5px solid var(--border-emphasis);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,217,255,0.08);
+      margin-bottom: 12px;
+      transition: all var(--transition-fast);
+      text-decoration: none;
+      display: block;
+    }
+
+    .link-card:hover {
+      border-color: var(--accent-primary);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.6), var(--shadow-emphasis);
+      transform: translateY(-2px);
+    }
+
+    .link-card-title {
+      margin: 0 0 4px;
+      font-size: 14px;
+      color: var(--text-main);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .link-card-title::before {
+      content: "🔗";
+      font-size: 16px;
+    }
+
+    .link-card-url {
+      margin: 0;
+      font-size: 11px;
+      color: var(--text-muted);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* ===== button ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      border: 2px solid transparent;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    .btn-download {
+      background: linear-gradient(135deg, var(--accent-primary), #0091cc);
+      color: #0a0e1a;
+      border-color: var(--accent-primary);
+      box-shadow: 0 6px 20px rgba(0,217,255,0.3), inset 0 1px 0 rgba(255,255,255,0.3);
+    }
+
+    .btn-download:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,217,255,0.5), inset 0 1px 0 rgba(255,255,255,0.4);
+      background: linear-gradient(135deg, #33e1ff, var(--accent-primary));
+    }
+
+    .btn-download:active {
+      transform: translateY(0);
+    }
+
+    /* ===== footer ===== */
+    footer {
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1.5px solid var(--border-emphasis);
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* フォーカス表示の強化 */
+    .back-link:focus-visible,
+    .btn:focus-visible,
+    .link-card:focus-visible {
+      outline: 3px solid var(--accent-primary);
+      outline-offset: 2px;
+    }
+
+    /* レスポンシブ調整 */
+    @media (max-width: 640px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .back-link {
+        align-self: flex-start;
+      }
+
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div>
+        <div class="title-block-small">高台小学校 生成AI活用研修</div>
+        <h1 class="page-title">資料</h1>
+        <p class="page-subtitle">
+          研修資料・参考文献・関連リンクをまとめています。
+        </p>
+      </div>
+      <a class="back-link" href="index.html">← トップに戻る</a>
+    </header>
+
+    <main>
+      <!-- 本日使用したスライド -->
+      <section class="section">
+        <h2 class="section-title">本日使用したスライド</h2>
+        <p class="section-description">
+          今回の研修で使用したスライド資料です。
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3 class="card-title">資料１（導入・まとめで使用したスライド）</h3>
+            <a class="btn btn-download" href="資料1.pdf" download>📥 ダウンロード</a>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">資料２（生成AIの授業での利活用で使用したスライド）</h3>
+            <a class="btn btn-download" href="https://drive.google.com/file/d/1FwaR1xRpSvo5wS2rxb2QKvrnpCV5jNki/view?usp=drive_link" target="_blank" rel="noreferrer">📥 ダウンロード</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ＃１ AI活用事例の紹介 -->
+      <section class="section">
+        <h2 class="section-title">＃１　AI活用事例の紹介</h2>
+        <p class="section-description">
+          上川授業改革担当者協議会での発表資料です。
+        </p>
+
+        <div class="card">
+          <h3 class="card-title">第２回上川授業改革担当者協議会兼市町村教育委員会ＩＣＴ連携協議会</h3>
+          <p class="card-description">2024年10月29日発表</p>
+          <a class="btn btn-download" href="https://drive.google.com/file/d/1Gz7APQ9AfsVkIv2KvYECYcCyO5HkFogq/view?usp=drive_link" target="_blank" rel="noreferrer">📥 ダウンロード</a>
+        </div>
+      </section>
+
+      <!-- ＃２ 生成AIに対する「冷静な態度」を育成する実践 -->
+      <section class="section">
+        <h2 class="section-title">＃２　生成AIに対する「冷静な態度」を育成する実践</h2>
+        <p class="section-description">
+          日本学校教育実践学会での発表資料です。
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3 class="card-title">日本学校教育実践学会 予稿</h3>
+            <p class="card-description">2025年11月21日提出</p>
+            <a class="btn btn-download" href="https://drive.google.com/file/d/10tUk0D9iC5OzPcytK-hav5N1XDf2Ei-U/view?usp=drive_link" target="_blank" rel="noreferrer">📥 ダウンロード</a>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">日本学校教育実践学会 発表資料</h3>
+            <p class="card-description">2025年12月6日発表</p>
+            <a class="btn btn-download" href="https://drive.google.com/file/d/1PKtPYh-uOfDtiUiyILkw8WH8OrryJftY/view?usp=drive_link" target="_blank" rel="noreferrer">📥 ダウンロード</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ＃３ 生成AIを含む情報活用能力体系表（試案）の作成 -->
+      <section class="section">
+        <h2 class="section-title">＃３　生成AIを含む情報活用能力体系表（試案）の作成</h2>
+        <p class="section-description">
+          AI時代の教育学会での発表資料と体系表です。
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3 class="card-title">AI時代の教育学会 研究発表予稿</h3>
+            <p class="card-description">2025年9月7日提出</p>
+            <a class="btn btn-download" href="https://drive.google.com/file/d/1TjcDqBOGI9-cdGhsKMqLxdNxJx9ufLzB/view?usp=drive_link" target="_blank" rel="noreferrer">📥 ダウンロード</a>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">AI時代の教育学会 発表資料</h3>
+            <p class="card-description">2025年10月4日</p>
+            <a class="btn btn-download" href="https://drive.google.com/file/d/1eNcWO56jCY12ywgY3OB1gGZ_JroZ0FEK/view?usp=drive_link" target="_blank" rel="noreferrer">📥 ダウンロード</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">情報活用能力体系表（試案）</h3>
+          <a class="btn btn-download" href="https://drive.google.com/file/d/1lv73_ercpcpc2DkZBdG18GYjIQfdOF7r/view?usp=drive_link" target="_blank" rel="noreferrer">📥 ダウンロード</a>
+        </div>
+      </section>
+
+      <!-- 参考リンク集 -->
+      <section class="section">
+        <h2 class="section-title">参考リンク集</h2>
+        <p class="section-description">
+          文部科学省のガイドラインや関連資料へのリンクです。
+        </p>
+
+        <a class="link-card" 
+           href="https://www.mext.go.jp/content/20230718-mtx_syoto02-000031167_011.pdf" 
+           target="_blank" 
+           rel="noreferrer">
+          <h3 class="link-card-title">初等中等教育段階における生成AIの利用に関する暫定的なガイドライン</h3>
+          <p class="link-card-url">https://www.mext.go.jp/content/20230718-mtx_syoto02-000031167_011.pdf</p>
+        </a>
+
+        <a class="link-card" 
+           href="https://www.mext.go.jp/a_menu/other/mext_02412.html" 
+           target="_blank" 
+           rel="noreferrer">
+          <h3 class="link-card-title">初等中等教育段階における生成AIの利用に関するガイドライン Ver.2</h3>
+          <p class="link-card-url">https://www.mext.go.jp/a_menu/other/mext_02412.html</p>
+        </a>
+
+        <a class="link-card" 
+           href="https://www.mext.go.jp/b_menu/shingi/chukyo/chukyo3/118/index.html" 
+           target="_blank" 
+           rel="noreferrer">
+          <h3 class="link-card-title">情報・技術ワーキンググループ</h3>
+          <p class="link-card-url">https://www.mext.go.jp/b_menu/shingi/chukyo/chukyo3/118/index.html</p>
+        </a>
+
+        <a class="link-card" 
+           href="https://www.mext.go.jp/b_menu/shingi/chukyo/chukyo3/103/index.html" 
+           target="_blank" 
+           rel="noreferrer">
+          <h3 class="link-card-title">総則・評価特別部会</h3>
+          <p class="link-card-url">https://www.mext.go.jp/b_menu/shingi/chukyo/chukyo3/103/index.html</p>
+        </a>
+      </section>
+    </main>
+
+    <footer>
+      高台小学校 生成AI活用研修｜資料
+    </footer>
+  </div>
+</body>
+</html>
