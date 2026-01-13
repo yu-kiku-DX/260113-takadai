@@ -374,6 +374,77 @@
       font-size: 13px;
     }
 
+    /* ===== example box ===== */
+    .example-box {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .example-bad,
+    .example-good {
+      padding: 16px;
+      border-radius: 10px;
+      border: 1.5px solid;
+    }
+
+    .example-bad {
+      background: rgba(248,113,113,0.05);
+      border-color: rgba(248,113,113,0.3);
+    }
+
+    .example-good {
+      background: rgba(52,211,153,0.05);
+      border-color: rgba(52,211,153,0.3);
+    }
+
+    .example-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+
+    .example-label.bad {
+      background: rgba(248,113,113,0.2);
+      color: #f87171;
+      border: 1px solid rgba(248,113,113,0.4);
+    }
+
+    .example-label.good {
+      background: rgba(52,211,153,0.2);
+      color: #34d399;
+      border: 1px solid rgba(52,211,153,0.4);
+    }
+
+    .example-text {
+      font-size: 13px;
+      color: var(--text-main);
+      line-height: 1.7;
+      margin: 0 0 8px;
+    }
+
+    .example-note {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-style: italic;
+      margin: 0;
+    }
+
+    .card-subtitle {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin: 0 0 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
     /* ===== footer ===== */
     footer {
       margin-top: 28px;
@@ -394,6 +465,10 @@
       .back-link {
         align-self: flex-start;
       }
+
+      .example-box {
+        gap: 12px;
+      }
     }
   </style>
 </head>
@@ -411,6 +486,69 @@
     </header>
 
     <main>
+      <!-- よく使う用語 -->
+      <h2 class="step-title">よく使う用語</h2>
+      <p class="lead">
+        生成AIを使う際によく出てくる言葉を確認しておきましょう。
+      </p>
+      <div class="card">
+        <div class="list-box">
+          <ul class="ok-list">
+            <li><strong>プロンプト</strong>：AIへの指示文のこと。「質問」「命令」「依頼」などを文章で伝える。</li>
+            <li><strong>チャット／会話</strong>：AIとのやり取りの単位。1つのテーマで続けて質問すると、AIが前の内容を覚えている。</li>
+            <li><strong>ハルシネーション（幻覚）</strong>：AIが事実でない情報を、もっともらしく出力すること。必ず確認が必要。</li>
+            <li><strong>コンテキスト（文脈）</strong>：AIが理解している会話の流れ。長い会話では前半の内容を忘れることがある。</li>
+            <li><strong>トークン</strong>：AIが処理する文字のまとまり。長い文章はトークン数が多くなり、処理に時間がかかる。</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- プロンプトの基本 -->
+      <h2 class="step-title">プロンプトの基本</h2>
+      <p class="lead">
+        効果的なプロンプトには「役割・材料・タスク・条件」の4つの要素を意識すると良い結果が得られます。
+      </p>
+      
+      <div class="card">
+        <h3 class="card-subtitle">プロンプトの4要素</h3>
+        <div class="list-box">
+          <ul class="ok-list">
+            <li><strong>役割</strong>：AIにどんな立場で答えてほしいか（例：小学校教師、保護者向けの案内文を書く人）</li>
+            <li><strong>材料</strong>：判断に必要な情報（例：学年、単元名、子どもの様子）</li>
+            <li><strong>タスク</strong>：何をしてほしいか（例：学級通信を作成する、ワークシートを考える）</li>
+            <li><strong>条件</strong>：形式や長さなどの制約（例：200字以内、箇条書きで、小学生にわかる言葉で）</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="card-subtitle">良い例・悪い例</h3>
+        <div class="example-box">
+          <div class="example-bad">
+            <div class="example-label bad">❌ 悪い例</div>
+            <p class="example-text">「学級通信を書いて」</p>
+            <p class="example-note">→ 情報が少なすぎて、AIは何を書けばいいかわからない</p>
+          </div>
+          
+          <div class="example-good">
+            <div class="example-label good">✅ 良い例</div>
+            <p class="example-text">
+              役割：4年2組の担任<br>
+              材料：運動会で全員リレーを頑張った、保護者に感謝を伝えたい<br>
+              タスク：学級通信の一部を作成<br>
+              条件：300字程度、温かい雰囲気で
+            </p>
+            <p class="example-note">→ 具体的な情報があるので、使えるたたき台が出やすい</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="message-box">
+        <p class="message-text">
+          <strong>ポイント：</strong>最初から完璧を目指さない。たたき台を作ってもらい、それを自分で修正・調整する使い方がおすすめです。
+        </p>
+      </div>
+
       <!-- 重要ルール -->
       <h2 class="step-title">重要ルール</h2>
       <div class="critical-card">
